@@ -1,0 +1,166 @@
+{
+  "vpns":
+  [
+    {
+      "client_id": "",
+      "cnpj": "03433705000190",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "06969494000101",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "07225793000196",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "13696454000190",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "15619759000124",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "18035051000114",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "18284620000165",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "22066583000196",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "42003666000143",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "42499130000160",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "50367956000102",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "",
+      "cnpj": "51577101000160",
+      "digifarma": "N",
+      "sadi": "S",
+      "amazon": "N"
+    },
+    {
+      "client_id": "11299",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "1757",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "2775",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "280",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "287",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "7514-10191",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "7757",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "7935",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "8081",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "9365",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    },
+    {
+      "client_id": "9673",
+      "cnpj": "",
+      "digifarma": "S",
+      "sadi": "N",
+      "amazon": "N"
+    }
+  ]
+}
