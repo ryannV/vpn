@@ -1,37 +1,74 @@
 const express = require("express");
-const cors = require("cors");
+const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
-app.use(cors());
+const PORT = 5000;
 
-// Obter o caminho absoluto da pasta "downloads"
-const baseDownloadsPath = path.join(__dirname, "downloads");
+app.use(cors());
 
 app.get("/download/:tipo/:codigo", (req, res) => {
   const { tipo, codigo } = req.params;
+  const folderPath = path.join(__dirname, "downloads", tipo);
 
-  // Definir o nome da pasta corretamente
-  const pasta = tipo.toLowerCase() === "sadi" ? "sadi" : "digifarma";
-
-  // Definir a extensão do arquivo baseado no tipo
-  const extensao = tipo.toLowerCase() === "sadi" ? "ovpn" : "zip";
-
-  // Construir o caminho correto do arquivo
-  const filePath = path.join(baseDownloadsPath, pasta, `${codigo}.${extensao}`);
-
-  console.log(`Tentando baixar: ${filePath}`); // Depuração
-
-  // Enviar o arquivo para download
-  res.download(filePath, `${codigo}.${extensao}`, (err) => {
+  fs.readdir(folderPath, (err, files) => {
     if (err) {
-      console.error("Erro no download:", err);
-      res.status(404).json({ error: "Arquivo não encontrado" });
+      return res.status(500).json({ error: "Erro ao ler a pasta de arquivos." });
     }
+
+    let matchingFile;
+
+    if (tipo === "sadi") {
+      // Busca EXATA apenas para o tipo sadi (sem hífen ou parte do nome)
+      matchingFile = files.find(file => path.basename(file, ".ovpn") === codigo);
+    } else {
+      // Tipos com lógica flexível (ex: digifarma)
+      matchingFile = files.find(file => {
+        const base = path.basename(file, ".zip");
+        return (
+          file.endsWith(".zip") &&
+          (
+            base.startsWith(codigo) ||       // ex: 280-3660
+            base.includes(`-${codigo}`) ||   // ex: 10899-11313
+            base.endsWith(codigo)            // ex: termina com 11313
+          )
+        );
+      });
+    }
+
+    if (!matchingFile) {
+      return res.status(404).json({ error: "Arquivo não encontrado." });
+    }
+
+    const filePath = path.join(folderPath, matchingFile);
+    res.download(filePath, matchingFile);
   });
 });
 
-const PORT = 5000;
+
+app.get("/check-file/:tipo/:codigo", (req, res) => {
+  const { tipo, codigo } = req.params;
+  const pasta = path.join(__dirname, "downloads", tipo);
+
+  fs.readdir(pasta, (err, arquivos) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro ao ler diretório." });
+    }
+
+    const arquivoEncontrado = arquivos.find((nome) => {
+      const partes = nome.split(".")[0].split("-");
+      return partes.includes(codigo);
+    });
+
+    if (!arquivoEncontrado) {
+      return res.status(404).json({ error: "Arquivo não encontrado." });
+    }
+
+    return res.status(200).json({ fileName: arquivoEncontrado });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
