@@ -13,20 +13,23 @@ const App = () => {
   const handleChange = (e) => {
     setCnpjId(e.target.value);
     setButtonHide(true);
+    setDownloadComplete(false);
+    setError("");
+    setArquivoEncontrado(null);
   };
 
   const handleTipoChange = (e) => {
     setTipo(e.target.value);
   };
 
-  const handleEnter = (e) => {
-    if ( (e.key !== "Enter")) {
-      if (arquivoEncontrado) {
-        buscarArquivo();
-      } else {
-        baixarArquivo();
-      }
-    }
+  const handleEnter = async (e) => {
+    if ( (e.key !== "Enter")) return;
+
+    if (!arquivoEncontrado) {
+      await buscarArquivo();
+    } else {
+      baixarArquivo();
+    } 
   }
 
   const buscarArquivo = async () => {
@@ -67,8 +70,9 @@ const App = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    setArquivoEncontrado(null);
+    
     setCnpjId("");
+    setArquivoEncontrado(null);
     setButtonHide(true);
   };
 
