@@ -20,10 +20,12 @@ const App = () => {
   };
 
   const handleEnter = (e) => {
-    if (e.key === "Enter" && arquivoEncontrado) {
-      baixarArquivo();
-    } else {
-      buscarArquivo();
+    if ( (e.key !== "Enter")) {
+      if (arquivoEncontrado) {
+        buscarArquivo();
+      } else {
+        baixarArquivo();
+      }
     }
   }
 
