@@ -8,14 +8,24 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [arquivoEncontrado, setArquivoEncontrado] = useState(null);
   const [downloadComplete, setDownloadComplete] = useState(false);
+  const [buttonHide, setButtonHide] = useState(true);
 
   const handleChange = (e) => {
     setCnpjId(e.target.value);
+    setButtonHide(true);
   };
 
   const handleTipoChange = (e) => {
     setTipo(e.target.value);
   };
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter" && arquivoEncontrado) {
+      baixarArquivo();
+    } else {
+      buscarArquivo();
+    }
+  }
 
   const buscarArquivo = async () => {
     setError("");
@@ -36,6 +46,7 @@ const App = () => {
       }
       const data = await response.json();
       setArquivoEncontrado(data.fileName);
+      setButtonHide(false);
     } catch (err) {
       console.error("Erro ao buscar arquivo:", err);
       setError("Arquivo não encontrado para esse código.");
@@ -56,14 +67,15 @@ const App = () => {
     document.body.removeChild(link);
     setArquivoEncontrado(null);
     setCnpjId("");
+    setButtonHide(true);
   };
 
   return (
     <div className="App">
       <section className="container">
-        <div>
+        <div className="centralizar">
           <label>
-            <input
+            <input className="margin-radio"
               type="radio"
               name="tipo"
               value="sadi"
@@ -73,7 +85,7 @@ const App = () => {
             Sadi
           </label>
           <label>
-            <input
+            <input className="margin-radio"
               type="radio"
               name="tipo"
               value="digifarma"
@@ -89,23 +101,22 @@ const App = () => {
           type="number"
           value={cnpj_id}
           onChange={handleChange}
+          onKeyUp={handleEnter}
           placeholder="Digite sem máscaras"
         />
 
-        <button onClick={buscarArquivo}>Buscar Arquivo</button>
+        {buttonHide ?
+          <button className="botao" onClick={buscarArquivo}>Buscar Arquivo</button> :
+          <>
+            <button className="botao" onClick={baixarArquivo}>Baixar agora</button>
+            <p>Arquivo encontrado: {arquivoEncontrado}</p>
+          </>
+        }
 
         {loading && <p>Carregando aguarde...</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        
+        {error && <p className="error" >{error}</p>}
 
-        {arquivoEncontrado && (
-          <div>
-            <p>Arquivo encontrado: {arquivoEncontrado}</p>
-            <button onClick={baixarArquivo}>Baixar agora</button>
-          </div>
-        )}
-
-        {downloadComplete && <p style={{ color: "green", textAlign: "center"}}>Download Completo</p>}
+        {downloadComplete && <p className="complete">Download Completo</p>}
       </section>
     </div>
   );
