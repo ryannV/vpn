@@ -3,7 +3,7 @@ import styles from './Menu.module.css';
 const Menu = () => {
     return (
         <div className={styles.menu}>
-            Digifarma
+           <h2>Digifarma</h2>
         </div>
     )   
 }

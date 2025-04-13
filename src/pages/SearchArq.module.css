@@ -1,10 +1,21 @@
-.container {
+/* .container {
     border: 2px solid black;
     width: 350px;
     margin: 0 auto;
     padding: 35px;
     background-color: #f9f9f9;
     border-radius: 8px;
+} */
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
 }
 
 .centralizar {
@@ -28,7 +39,7 @@
     width: 100%;
     padding: 12px;
     font-size: 18px;
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    background: linear-gradient(45deg, #ed5c5c, #ec2121);
     color: white;
     border: none;
     border-radius: 5px;
@@ -37,7 +48,7 @@
 }
 
 .botao:hover {
-    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    background: linear-gradient(45deg, #ec2121, #ed5c5c);
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
 }
 
@@ -50,7 +61,7 @@
 
 .error {
     color: red;
-    text-align: center;
+    /* text-align: center; */
     font-weight: bold;
     margin: 10px 0 0 0;
 }

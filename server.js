@@ -73,7 +73,7 @@ app.get("/check-file/:tipo/:codigo", (req, res) => {
 app.use(express.json());
 
 app.post("/send-email", async (req, res) => {
-  const { to, subject, message, nomeCliente, nomeAnalista, cnpj, clientID, tipo, qtdLojas } = req.body;
+  const { to, subject, message, nomeCliente, nomeAnalista, cnpj, clientID, tipo, qtdLojas, multiempresa } = req.body;
 
   try {
     const transporter = nodemailer.createTransport({
@@ -99,6 +99,7 @@ app.post("/send-email", async (req, res) => {
       - Nome: ${nomeCliente}
       - Tipo: VPN ${tipo}
       - Quantidade de Lojas: ${qtdLojas}
+      - Multiempresa: ${multiempresa}
 
       ${message}
 
