@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 const app = express();
 const PORT = 5000;
@@ -20,17 +21,16 @@ app.get("/download/:tipo/:codigo", (req, res) => {
     let matchingFile;
 
     if (tipo === "sadi") {
-      // Busca EXATA apenas para o tipo sadi (sem hífen ou parte do nome)
+      // Busca EXATA apenas para o tipo sadi
       matchingFile = files.find(file => path.basename(file, ".ovpn") === codigo);
     } else {
-      // Tipos com lógica flexível (ex: digifarma)
+      // Tipos com lógica flexível para o tipo digifarma
       matchingFile = files.find(file => {
         const base = path.basename(file, ".zip");
         return (
           file.endsWith(".zip") &&
           (
-            base.startsWith(codigo) ||       // ex: 280-3660
-            base.includes(`-${codigo}`) ||   // ex: 10899-11313
+            base.startsWith(codigo) ||       // ex: incia com 10889
             base.endsWith(codigo)            // ex: termina com 11313
           )
         );
@@ -68,6 +68,54 @@ app.get("/check-file/:tipo/:codigo", (req, res) => {
     return res.status(200).json({ fileName: arquivoEncontrado });
   });
 });
+
+
+app.use(express.json());
+
+app.post("/send-email", async (req, res) => {
+  const { to, subject, message, nomeCliente, nomeAnalista, cnpj, clientID, tipo, qtdLojas } = req.body;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "ryannvictor72@gmail.com",
+        pass: "vqggeawqyodvgbwz"
+      }
+    });
+
+    const mailOptions = {
+      from: "ryannvictor72@gmail.com",
+      to,
+      subject: subject || "Solicitação de VPN",
+      text: 
+      `Olá Líder,
+
+      Solicito por meio deste e-mail, a geração do arquivo VPN, segue informações abaixo.
+
+      Informações:
+      - CNPJ: ${cnpj}
+      - Client ID: ${clientID}
+      - Nome: ${nomeCliente}
+      - Tipo: VPN ${tipo}
+      - Quantidade de Lojas: ${qtdLojas}
+
+      ${message}
+
+      Atenciosamente,
+      ${nomeAnalista} 
+      Analista de Suporte`
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, message: "E-mail enviado com sucesso!" });
+  } catch (error) {
+    console.error("Erro ao enviar e-mail:", error);
+    res.status(500).json({ success: false, message: "Erro ao enviar e-mail." });
+  }
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

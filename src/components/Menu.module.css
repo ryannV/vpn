@@ -1,0 +1,7 @@
+.menu{
+    background-color: rgb(171, 171, 171);
+    width: 100vw;
+    padding: 25px 0px; /* Evitar padding lateral com Width 100vw*/
+    margin-bottom: 25px;
+    text-align: center;
+}
