@@ -5,4 +5,6 @@ body {
   align-items: center;
   margin: 0;
   padding: 0;
+  /* esconder o scroll horizontal */
+  overflow-x: hidden;
 }
