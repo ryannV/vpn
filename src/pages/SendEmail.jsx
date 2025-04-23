@@ -87,7 +87,7 @@ const SendEmail = () => {
         }
 
 
-        const response = await fetch("http://localhost:5000/send-email", {
+        const response = await fetch("http://10.1.1.69:5000/send-email", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

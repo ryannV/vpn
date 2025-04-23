@@ -23,6 +23,8 @@ app.get("/download/:tipo/:codigo", (req, res) => {
     if (tipo === "sadi") {
       // Busca EXATA apenas para o tipo sadi
       matchingFile = files.find(file => path.basename(file, ".ovpn") === codigo);
+    } else if (tipo === "digifarma") {
+      matchingFile = files.find(file => path.basename(file, ".zip") === codigo);
     } else {
       // Tipos com lógica flexível para o tipo digifarma
       matchingFile = files.find(file => {
@@ -118,6 +120,6 @@ app.post("/send-email", async (req, res) => {
 
 
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor rodando na rede local!`);
 });
