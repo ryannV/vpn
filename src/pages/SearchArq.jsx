@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import styles from './SearchArq.module.css';
 import Menu from "../components/Menu";
 
-const SearchArq = () => {
+const SearchArq = ({darkMode, setDarkMode}) => {
     const navigate = useNavigate();
     const [cnpj_id, setCnpjId] = useState("");
     const [tipo, setTipo] = useState("digifarma");
@@ -52,7 +52,7 @@ const SearchArq = () => {
       setLoading(true);
   
       try {
-        const response = await fetch(`http://10.1.1.69:5000/check-file/${tipo}/${cnpj_id}`);
+        const response = await fetch(`http://localhost:5000/check-file/${tipo}/${cnpj_id}`);
         if (!response.ok) {
           throw new Error("Arquivo não encontrado");
         }
@@ -70,7 +70,7 @@ const SearchArq = () => {
     const baixarArquivo = () => {
       if (!arquivoEncontrado) return;
       setDownloadComplete(true);
-      const downloadUrl = `http://10.1.1.69:5000/download/${tipo}/${arquivoEncontrado.split('.')[0]}`;
+      const downloadUrl = `http://localhost/download/${tipo}/${arquivoEncontrado.split('.')[0]}`;
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.setAttribute("download", arquivoEncontrado);
@@ -85,8 +85,8 @@ const SearchArq = () => {
 
     return (
         <div>
-            <Menu />
-            <section className={styles.container}>
+            <Menu hide={false} darkMode={darkMode} setDarkMode={setDarkMode}/>
+            <section className={darkMode ? styles.container_dark : styles.container}>
                 <div className={styles.centralizar}>
                     <label>
                         <input className={styles.margin_radio}

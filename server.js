@@ -8,6 +8,7 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/download/:tipo/:codigo", (req, res) => {
   const { tipo, codigo } = req.params;
@@ -21,7 +22,7 @@ app.get("/download/:tipo/:codigo", (req, res) => {
     let matchingFile;
 
     if (tipo === "sadi") {
-      // Busca EXATA apenas para o tipo sadi
+      // Busca EXATA 
       matchingFile = files.find(file => path.basename(file, ".ovpn") === codigo);
     } else if (tipo === "digifarma") {
       matchingFile = files.find(file => path.basename(file, ".zip") === codigo);
@@ -48,7 +49,6 @@ app.get("/download/:tipo/:codigo", (req, res) => {
   });
 });
 
-
 app.get("/check-file/:tipo/:codigo", (req, res) => {
   const { tipo, codigo } = req.params;
   const pasta = path.join(__dirname, "downloads", tipo);
@@ -71,11 +71,8 @@ app.get("/check-file/:tipo/:codigo", (req, res) => {
   });
 });
 
-
-app.use(express.json());
-
 app.post("/send-email", async (req, res) => {
-  const { to, subject, message, nomeCliente, nomeAnalista, cnpj, clientID, tipo, qtdLojas, multiempresa } = req.body;
+  const { to, subject, message, nomeCliente, telefone, nomeAnalista, cnpj, clientID, tipo, qtdLojas, multiempresa } = req.body;
 
   try {
     const transporter = nodemailer.createTransport({
@@ -99,7 +96,8 @@ app.post("/send-email", async (req, res) => {
       - CNPJ: ${cnpj}
       - Client ID: ${clientID}
       - Nome: ${nomeCliente}
-      - Tipo: VPN ${tipo}
+      - Telefone: ${telefone}
+      - Tipo: ${tipo}
       - Quantidade de Lojas: ${qtdLojas}
       - Multiempresa: ${multiempresa}
 
@@ -118,8 +116,6 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-
-
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Servidor rodando na rede local!`);
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

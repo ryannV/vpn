@@ -2,7 +2,47 @@
     background-color: rgb(236, 33, 33);
     width: 100vw;
     padding: 3px 0px; /* Evitar padding lateral com Width 100vw */
-    margin-bottom: 25px;
+    margin-bottom: 0 0 25px 0;
     text-align: center;
     color: #fff;
+    display: flex;
+    user-select: none;
+    justify-content: flex-end;
+}
+
+.menu_email{
+    background-color: rgb(236, 33, 33);
+    width: 100vw;
+    padding: 3px 0px; /* Evitar padding lateral com Width 100vw */
+    margin-bottom: 0 0 25px 0;
+    text-align: center;
+    color: #fff;
+    display: flex;    
+    user-select: none;
+}
+
+.icon{
+    margin-top: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.icon_email{
+    margin-top: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.icon_moon_email{
+    margin-top: 20px;
+    margin-left: 665px;
+    cursor: pointer;
+}
+
+.titulo{
+    margin-right: 665px;
+}
+
+.titulo_email{
+    margin-left: 665px;
 }

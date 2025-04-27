@@ -8,3 +8,11 @@ body {
   /* esconder o scroll horizontal */
   overflow-x: hidden;
 }
+
+.light_mode{
+  background-color: #fff;
+}
+
+.dark_mode{
+  background-color: #000;
+}
