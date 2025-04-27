@@ -140,8 +140,8 @@ const SendEmail = ({darkMode, setDarkMode}) => {
                 <Input type="number" name="qtdLojas" id="qtdLojas" value={qtdLojas} onChange={handleQtdLojas} placeholder="Digite a Quantidade de Lojas" label="Quantidade de Lojas" darkMode={darkMode} setDarkMode={setDarkMode}/>
 
                 <div className={styles.flex}>
-                    <div>
-                        <label htmlFor="multiempresa">VPN</label>
+                    <div className={styles.text}>
+                        <label htmlFor="multiempresa">Tipo VPN</label>
                         <div className={styles.label}>
                             <label>
                                 <input className={styles.margin_radio}
@@ -166,8 +166,8 @@ const SendEmail = ({darkMode, setDarkMode}) => {
                         </div>
                     </div>
 
-                    <div>
-                        <label htmlFor="multiempresa">MultiEmpresa</label>
+                    <div className={styles.text}>
+                        <label htmlFor="multiempresa">Multiempresa</label>
                         <div className={styles.label}>
                             <label>
                                 <input className={styles.margin_radio}
@@ -217,6 +217,7 @@ const SendEmail = ({darkMode, setDarkMode}) => {
                             darkMode={darkMode} 
                             setDarkMode={setDarkMode}
                         />
+                        {/* {qtdLojas > 1? <p>SEPARADOR</p>:<></>} */}
                     </>
                 ))}
 
