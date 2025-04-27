@@ -70,7 +70,7 @@ const SearchArq = ({darkMode, setDarkMode}) => {
     const baixarArquivo = () => {
       if (!arquivoEncontrado) return;
       setDownloadComplete(true);
-      const downloadUrl = `http://localhost/download/${tipo}/${arquivoEncontrado.split('.')[0]}`;
+      const downloadUrl = `http://localhost:5000/download/${tipo}/${arquivoEncontrado.split('.')[0]}`;
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.setAttribute("download", arquivoEncontrado);
