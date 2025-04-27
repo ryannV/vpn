@@ -132,12 +132,12 @@ const SendEmail = ({darkMode, setDarkMode}) => {
     return (
         <div>
             <Menu hide={true} darkMode={darkMode} setDarkMode={setDarkMode}/>
-            <section className={styles.container}>
-                <Input type="email" name="email" id="email" value={email} onChange={handleEmail} placeholder="Digite o email do líder" label="Email" />
-                <Input type="text" name="nomeCliente" id="nomeCliente" value={nomeCliente} onChange={handleNomeCliente} placeholder="Digite o nome do cliente" label="Nome do Cliente" />
-                <Input type="text" name="telefone" id="telefone" value={telefone} onChange={handleTelefone} placeholder="Digite o numero de telefone" label="Telefone" />
-                <Input type="text" name="nomeAnalista" id="nomeAnalista" value={nomeAnalista} onChange={handleNomeAnalista} placeholder="Digite o seu nome" label="Nome do Analista" />
-                <Input type="number" name="qtdLojas" id="qtdLojas" value={qtdLojas} onChange={handleQtdLojas} placeholder="Digite a Quantidade de Lojas" label="Quantidade de Lojas" />
+            <section className={darkMode ? styles.container_dark : styles.container}>
+                <Input type="email" name="email" id="email" value={email} onChange={handleEmail} placeholder="Digite o email do líder" label="Email" darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <Input type="text" name="nomeCliente" id="nomeCliente" value={nomeCliente} onChange={handleNomeCliente} placeholder="Digite o nome do cliente" label="Nome do Cliente" darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <Input type="text" name="telefone" id="telefone" value={telefone} onChange={handleTelefone} placeholder="Digite o numero de telefone" label="Telefone" darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <Input type="text" name="nomeAnalista" id="nomeAnalista" value={nomeAnalista} onChange={handleNomeAnalista} placeholder="Digite o seu nome" label="Nome do Analista" darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <Input type="number" name="qtdLojas" id="qtdLojas" value={qtdLojas} onChange={handleQtdLojas} placeholder="Digite a Quantidade de Lojas" label="Quantidade de Lojas" darkMode={darkMode} setDarkMode={setDarkMode}/>
 
                 <div className={styles.flex}>
                     <div>
@@ -203,6 +203,8 @@ const SendEmail = ({darkMode, setDarkMode}) => {
                             onChange={(e) => handleCnpjChange(index, e.target.value)}
                             placeholder={`Digite o CNPJ da loja ${index + 1}`}
                             label="CNPJ"
+                            darkMode={darkMode} 
+                            setDarkMode={setDarkMode}
                         />
                         <Input
                             type="number"
@@ -212,6 +214,8 @@ const SendEmail = ({darkMode, setDarkMode}) => {
                             onChange={(e) => handleClientIdChange(index, e.target.value)}
                             placeholder={`Digite o ClientID da loja ${index + 1}`}
                             label="ClientID"
+                            darkMode={darkMode} 
+                            setDarkMode={setDarkMode}
                         />
                     </>
                 ))}

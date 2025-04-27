@@ -112,12 +112,13 @@ const SearchArq = ({darkMode, setDarkMode}) => {
 
                 <label>CNPJ/Client_ID</label>
                 <input
-                    className={styles.inputs}
+                    className={darkMode ? styles.inputs_dark : styles.inputs}
                     type="number"
                     value={cnpj_id}
                     onChange={handleChange}
                     onKeyUp={handleEnter}
                     placeholder="Digite sem máscaras"
+                    onWheel={(e) => e.target.blur()}  
                 />
 
                 {buttonHide ?

@@ -6,6 +6,16 @@
     margin-bottom: 10px;
 }
 
+.inputs_dark{
+    width: 94.5%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.004);
+    color: #ffffff;
+}
+
 .label{
     margin-bottom: 10px;
 }
