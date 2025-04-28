@@ -1,48 +1,82 @@
-.menu{
+.menu {
     background-color: rgb(236, 33, 33);
-    width: 100vw;
-    padding: 3px 0px; /* Evitar padding lateral com Width 100vw */
-    margin-bottom: 0 0 25px 0;
+    width: 100vw; /* Continua ocupando toda a largura da tela */
+    padding: 10px 0;
     text-align: center;
     color: #fff;
     display: flex;
+    justify-content: center; /* Importante: centralizar o menu_content */
+    align-items: center;
     user-select: none;
-    justify-content: flex-end;
 }
 
-.menu_email{
+.menu_email {
     background-color: rgb(236, 33, 33);
-    width: 100vw;
-    padding: 3px 0px; /* Evitar padding lateral com Width 100vw */
-    margin-bottom: 0 0 25px 0;
+    width: 100vw; /* Continua ocupando toda a largura da tela */
+    padding: 10px 0;
     text-align: center;
     color: #fff;
-    display: flex;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     user-select: none;
 }
 
-.icon{
-    margin-top: 20px;
-    margin-right: 10px;
+/* A nova div interna */
+.menu_content {
+    width: 100%;
+    max-width: 1200px; /* Controla o tamanho do conteúdo para não ficar esticado demais */
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Deixa o título no meio e os ícones nos cantos */
+}
+
+/* Quando tem só o título e o ícone (moon) */
+.menu_content_single {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* CENTRANDO o título */
+    gap: 10px; /* Pequeno espaço entre o título e o ícone */
+}
+
+/* Ícones */
+.icon,
+.icon_email,
+.icon_moon_email {
+    margin: 0 10px;
     cursor: pointer;
+    width: 30px; /* Adicionei tamanho para ficar melhor no celular */
+    height: 30px;
 }
 
-.icon_email{
-    margin-top: 20px;
-    margin-left: 10px;
-    cursor: pointer;
+/* Título */
+.titulo,
+.titulo_email {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
 }
 
-.icon_moon_email{
-    margin-top: 20px;
-    margin-left: 665px;
-    cursor: pointer;
-}
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .menu_content {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.titulo{
-    margin-right: 665px;
-}
+    .titulo,
+    .titulo_email {
+        font-size: 1.5rem;
+    }
 
-.titulo_email{
-    margin-left: 665px;
+    .icon,
+    .icon_email,
+    .icon_moon_email {
+        width: 24px;
+        height: 24px;
+    }
 }
