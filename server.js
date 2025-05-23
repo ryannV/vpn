@@ -10,7 +10,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/download/:tipo/:codigo", (req, res) => {
+app.get("/downloads/:tipo/:codigo", (req, res) => {
   const { tipo, codigo } = req.params;
   const folderPath = path.join(__dirname, "downloads", tipo);
 

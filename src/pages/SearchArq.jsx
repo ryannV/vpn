@@ -52,7 +52,7 @@ const SearchArq = ({darkMode, setDarkMode}) => {
       setLoading(true);
   
       try {
-        const response = await fetch(`http://localhost:5000/check-file/${tipo}/${cnpj_id}`);
+        const response = await fetch(`http://10.1.1.69:5000/check-file/${tipo}/${cnpj_id}`);
         if (!response.ok) {
           throw new Error("Arquivo não encontrado");
         }
@@ -70,7 +70,7 @@ const SearchArq = ({darkMode, setDarkMode}) => {
     const baixarArquivo = () => {
       if (!arquivoEncontrado) return;
       setDownloadComplete(true);
-      const downloadUrl = `http://localhost:5000/download/${tipo}/${arquivoEncontrado.split('.')[0]}`;
+      const downloadUrl = `http://10.1.1.69:5000/downloads/${tipo}/${arquivoEncontrado.split('.')[0]}`;
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.setAttribute("download", arquivoEncontrado);
